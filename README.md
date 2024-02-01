@@ -12,7 +12,7 @@
 
 ## 一键快速替换前端页面：
 ```shell
-curl -sSfL https://raw.githubusercontent.com/simkinhu/xyhelpercarlist/master/quick-install/quick-list.sh | bash
+curl -sSfL https://raw.githubusercontent.com/jurieo/xyhelpercarlist/mogai/quick-install/quick-list.sh | bash
 ```
 
 ![Image text](https://github.com/simkinhu/xyhelpercarlist/blob/master/quick-install/home.jpg?raw=true)
