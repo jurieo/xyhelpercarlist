@@ -3,7 +3,7 @@ set -e
 
 ## 克隆仓库到本地
 echo "clone repository..."
-git clone https://github.com/simkinhu/xyhelpercarlist.git xyhelpercarlist
+git clone https://github.com/jurieo/xyhelpercarlist.git xyhelpercarlist
 
 
 # 设置目录名
