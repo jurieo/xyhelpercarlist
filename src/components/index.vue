@@ -92,7 +92,7 @@ export default {
       }
       window.location.href = `${
         window.location.origin
-      }/auth/login?carid=${encodeURI(carID)}`;
+      }/auth/login?carid=${encodeURI(carID.carID)}`;
     },
     beforeDestroy() {
       window.removeEventListener("scroll", this.handleScroll);
