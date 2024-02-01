@@ -50,7 +50,7 @@ export default {
 
       this.isLoading = true;
       axios
-        .post("https://free-gpt.club/carpage", {
+        .post("/carpage", {
           page: this.page,
           size: 48,
         })
