@@ -6,18 +6,10 @@
     </n-gi>
   </n-grid>
   <n-divider></n-divider>
-  <n-grid
-    x-gap="10"
-    y-gap="10"
-    cols="2 s:3 m:4 l:5 xl:5 2xl:6"
-    responsive="screen"
-  >
+  <n-grid x-gap="10" y-gap="10" cols="2 s:3 m:4 l:5 xl:5 2xl:6" responsive="screen">
     <n-grid-item class="cardclss" v-for="item in itemslist" :key="item.carID">
       <n-card :title="item.carID" @click="redirectTo(item)">
-        <img
-          class="plusicon"
-          :src="'https://img.closeai.biz/endpoint?url=' + item.iconurl"
-        />
+        <img class="plusicon" :src="'https://img.closeai.biz/endpoint?url=' + item.iconurl" />
       </n-card>
     </n-grid-item>
   </n-grid>
@@ -75,9 +67,6 @@ export default {
         .catch((error) => {
           console.error("请求错误:", error);
         })
-        .finally(() => {
-          this.isLoading = false;
-        });
     },
     handleScroll() {
       const nearBottomOfPage =
@@ -90,9 +79,22 @@ export default {
       if (carID.status === 0) {
         return message.error("翻车啦，换一个吧！");
       }
-      window.location.href = `${
-        window.location.origin
-      }/auth/login?carid=${encodeURI(carID.carID)}`;
+      // 尝试获取父页面的路径
+      const parentPath = window.parent.location.pathname;
+      console.log(parentPath);
+
+      const targetPath = parentPath === '/list' ? '/auth/login' : '/auth/loginSession';
+      const redirectUrl = `${window.location.origin}${targetPath}?carid=${encodeURI(carID.carID)}`;
+      // console.log("redirectUrl", redirectUrl);
+
+      // 在iframe中执行重定向可能不会按预期工作
+      // 可能需要在父页面上设置location或通过其他机制通知父页面进行重定向
+      window.parent.location.href = redirectUrl;
+
+
+      // window.location.href = `${
+      //   window.location.origin
+      // }/auth/login?carid=${encodeURI(carID.carID)}`;
     },
     beforeDestroy() {
       window.removeEventListener("scroll", this.handleScroll);
