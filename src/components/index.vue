@@ -60,8 +60,11 @@ export default {
           });
           this.itemslist = [...this.itemslist, ...newItems];
           this.page += 1;
-          if (this.itemslist.length === 1 && this.itemslist[0].status === 1) {
-            this.redirectTo(this.itemslist[0]);
+          if (window.top === window.self) {
+            // 当前页面在顶级窗口中
+            if (this.itemslist.length === 1 && this.itemslist[0].status === 1) {
+              this.redirectTo(this.itemslist[0]);
+            }
           }
         })
         .catch((error) => {
@@ -81,8 +84,6 @@ export default {
       }
       // 尝试获取父页面的路径
       const parentPath = window.parent.location.pathname;
-      console.log(parentPath);
-
       const targetPath = parentPath === '/list' ? '/auth/login' : '/auth/loginSession';
       const redirectUrl = `${window.location.origin}${targetPath}?carid=${encodeURI(carID.carID)}`;
       // console.log("redirectUrl", redirectUrl);
