@@ -78,14 +78,15 @@ export default {
         this.fetchData();
       }
     },
-    redirectTo(carID) {
-      if (carID.status === 0) {
+    redirectTo(car) {
+      if (car.status === 0) {
         return message.error("翻车啦，换一个吧！");
       }
       // 尝试获取父页面的路径
-      const parentPath = window.parent.location.pathname;
-      const targetPath = parentPath === '/list' ? '/auth/login' : '/auth/loginSession';
-      const redirectUrl = `${window.location.origin}${targetPath}?carid=${encodeURI(carID.carID)}`;
+      // const parentPath = window.parent.location.pathname;
+      // 已经先登录，就不需要再判断top路径里。
+      // const targetPath = parentPath === '/list' ? '/auth/login' : '/auth/loginSession';
+      const redirectUrl = `${window.location.origin}/auth/loginSession?carid=${encodeURI(car.carID)}`;
       // console.log("redirectUrl", redirectUrl);
 
       // 在iframe中执行重定向可能不会按预期工作
