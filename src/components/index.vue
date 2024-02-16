@@ -67,6 +67,7 @@ const redirectTo = (carID) => {
       }
       else {
         alert(data.msg);
+        data.url && (window.parent.location.href = data.url)
       }
     })
   }
