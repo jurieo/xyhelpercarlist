@@ -27,7 +27,7 @@ const notice = ref("")
 
 const fetchData = () => {
   axios
-    .post("http://localhost:8001/carpage", {
+    .post("/carpage", {
       page: 1,
       size: 999,
     })
